@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <div class="calcul">
+        @RenderBody()
+        <header>
+            <h1>Лабораторная работа №1</h1>
+        </header>
+        <div id="main">
+            @RenderSection("main", required: false)
+        </div>
+        <footer>
+            Выполнил: студент группы ИСТбд-21 Попов Кирилл
+            <p> </p>
+            &copy; @DateTime.Now.Date
+        </footer>
+    </div>
+</body>
+</html>

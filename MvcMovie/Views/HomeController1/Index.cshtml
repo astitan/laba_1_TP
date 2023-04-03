@@ -1,0 +1,76 @@
+﻿@model MvcMovie.Models.Class
+
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section main {
+    <h2>Калькулятор</h2>
+    <div class="calc">
+        @using (Html.BeginForm())
+        {
+
+            @Html.LabelFor(x => x.first_oper, "Первое число: ")
+            @Html.TextBoxFor(x => x.first_oper, new { @class = "textBoxStyle" })
+            @Html.ValidationMessageFor(x => x.first_oper, "", new { @class = ".errormessagestyle" })
+            <p> </p>
+            @Html.LabelFor(x => x.first_oper, "Второе число: ")
+            @Html.TextBoxFor(x => x.second_oper, new { @class = "textBoxStyle" })
+            @Html.ValidationMessageFor(x => x.second_oper, "", new { @class = ".errormessagestyle" })
+            <p>Операция: @Html.DropDownList("act", new MultiSelectList(new string[] { "/", "-", "+", "*" }), new { @class = "operator" })</p>
+
+            <p>Результат:  @Model.result</p>
+
+            <input class="button" type="submit" name="click" value="calculate" />
+            <input class="button" type="submit" name="click" value="clear" />
+        }
+
+
+    </div>
+
+    @Html.ActionLink("Ссылка на вашу операцию", "Urav", new { fir_op = Model.first_oper, sec_op = Model.second_oper, op = Model.act, res = Model.result })
+    <p> </p>
+    <h2>Сравнение:</h2>
+
+    @if (ViewBag.chis != ' ' && Model.second_oper != 0 && Model.second_oper > 0 && Model.second_oper < 100)
+    {
+        if (Model.result == ViewBag.chis)
+        {
+            @: Полученное число @Model.result равно заданному числу 17
+        }
+        else
+        {
+            @: Полученное число @Model.result не равно заданному числу 17
+        }
+    }
+
+
+    <style>
+        .textBoxStyle {
+            border: 1px solid #ccc;
+            padding: 4px;
+            font-size: 17px;
+        }
+
+        .errormessagestyle {
+            color: red;
+        }
+
+
+        .operator {
+            border: 1px solid #ccc;
+            padding: 6px;
+            font-size: 25px;
+        }
+
+        body {
+            line-height: 2;
+            position: relative;
+            text-align: center;
+        }
+    </style>
+
+}
